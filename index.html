@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digital Clock</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/images/logo.png">
+</head>
+<body>
+    <header>
+        <img src="assets/images/logo.png" alt="AI Clock Logo" class="logo">
+        <h1>AI Digital Clock</h1>
+        <nav>
+            <a href="index.html" class="active">Clock</a>
+            <a href="timer.html">Timer</a>
+            <a href="alarm.html">Alarm</a>
+            <a href="stopwatch.html">Stopwatch</a>
+        </nav>
+        <button id="settings-btn" title="Settings">⚙️</button>
+        <button id="theme-toggle" title="Switch Theme">🌓</button>
+    </header>
+    <main>
+        <section id="clock-section">
+            <div class="clock-container">
+                <div id="digital-clock" class="ai-glow"></div>
+                <div id="date-display" class="date-display"></div>
+                <div id="day-display" class="day-display"></div>
+            </div>
+            <div class="analog-clock-container">
+                <div id="analog-clock" class="analog-clock"></div>
+            </div>
+        </section>
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-settings">&times;</span>
+                <h2>Settings</h2>
+                <label>
+                    <input type="checkbox" id="toggle-24hr">
+                    24-Hour Format
+                </label>
+            </div>
+        </div>
+    </main>
+    <script src="js/clock.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html> 

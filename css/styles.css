@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+:root {
+    --primary-bg: #181c24;
+    --secondary-bg: #23283a;
+    --primary-color: #00ffe7;
+    --secondary-color: #ff00c8;
+    --text-color: #fff;
+    --ai-glow: 0 0 16px #00ffe7, 0 0 32px #ff00c8;
+    --ai-heart: #ff00c8;
+}
+[data-theme="light"] {
+    --primary-bg: #f5f7fa;
+    --secondary-bg: #e3e8ee;
+    --primary-color: #23283a;
+    --secondary-color: #00bcd4;
+    --text-color: #23283a;
+    --ai-glow: 0 0 8px #00bcd4, 0 0 16px #ff4081;
+    --ai-heart: #ff4081;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Orbitron', Arial, sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--secondary-bg);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: var(--ai-glow);
+}
+h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    text-shadow: var(--ai-glow);
+}
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: color 0.3s;
+}
+#theme-toggle:hover {
+    color: var(--primary-color);
+}
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+section {
+    background: var(--secondary-bg);
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h2 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px var(--primary-color);
+}
+.ai-glow {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-shadow: var(--ai-glow);
+    margin: 1rem 0;
+    letter-spacing: 2px;
+}
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+button {
+    background: var(--primary-color);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.3s, color 0.3s;
+}
+button:hover {
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+input[type="number"], input[type="time"] {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin: 0.25rem;
+    width: 4rem;
+    text-align: center;
+}
+#sw-laps {
+    list-style: none;
+    width: 100%;
+    margin-top: 1rem;
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--secondary-bg);
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+.ai-heart {
+    color: var(--ai-heart);
+    text-shadow: 0 0 8px var(--ai-heart);
+}
+/* Navigation bar styles */
+nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: 2rem;
+}
+nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+nav a.active, nav a:hover {
+    background: var(--primary-color);
+    color: var(--primary-bg);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background: var(--secondary-bg);
+    margin: 10% auto;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    color: var(--text-color);
+    position: relative;
+    text-align: center;
+}
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--secondary-color);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close:hover {
+    color: var(--primary-color);
+}
+#settings-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+#settings-btn:hover {
+    color: var(--primary-color);
+}
+.note {
+    margin-top: 1.5rem;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Clock container styles */
+.clock-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Date and day display styles */
+.date-display, .day-display {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.day-display {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Analog clock styles */
+.analog-clock-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem 0;
+}
+
+.analog-clock {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--ai-glow), inset 0 0 20px rgba(0, 0, 0, 0.2);
+    background: var(--secondary-bg);
+    margin: 0 auto;
+}
+
+.clock-mark {
+    position: absolute;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    color: var(--primary-color);
+    transform: translate(-50%, -50%);
+}
+
+.clock-hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center;
+}
+
+.hour-hand {
+    width: 60px;
+    height: 8px;
+    background: var(--secondary-color);
+    border-radius: 4px;
+    transform: rotate(0deg);
+}
+
+.minute-hand {
+    width: 80px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 3px;
+    transform: rotate(0deg);
+}
+
+.second-hand {
+    width: 90px;
+    height: 2px;
+    background: var(--text-color);
+    border-radius: 1px;
+    transform: rotate(0deg);
+    z-index: 10;
+}
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    box-shadow: 0 0 6px var(--primary-color);
+}
+
+/* Larger alarm time input */
+.large-time-input {
+    width: 180px !important;
+    height: 60px !important;
+    font-size: 2rem !important;
+    padding: 0.5rem 1rem !important;
+    margin: 1.5rem auto !important;
+    display: block;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 0 10px var(--primary-color);
+    color: var(--primary-color) !important;
+}
+
+.large-button {
+    padding: 0.75rem 2rem !important;
+    font-size: 1.5rem !important;
+    margin: 1rem 0 !important;
+}
+
+.alarm-time-container {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.alarm-status {
+    min-height: 3rem;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.current-time {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+/* Alarms list container */
+.alarms-list-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-top: 1px solid var(--primary-color);
+    padding-top: 1.5rem;
+}
+
+.alarms-list-container h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.alarms-list {
+    list-style: none;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.alarm-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-bg);
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alarm-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.alarm-time {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.alarm-date {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.delete-alarm {
+    background: none;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-alarm:hover {
+    background: var(--secondary-color);
+    color: var(--primary-bg);
+}
+
+.empty-alarms {
+    text-align: center;
+    font-style: italic;
+    color: var(--secondary-color);
+    padding: 1rem 0;
+}
+
+@media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    section {
+        padding: 1rem;
+    }
+} 
